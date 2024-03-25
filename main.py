@@ -14,6 +14,9 @@ app = FastAPI(
     version="0.0.1",
 )
 
+
+# app.mount("/static", StaticFiles(directory="static"), name="static")
+
 # LaMini init
 checkpoint = "./model/"
 tokenizer = AutoTokenizer.from_pretrained(checkpoint)

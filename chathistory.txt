@@ -1,0 +1,8 @@
+user: Where is Japan located?
+assistant: "detail":"Method Not Allowed" 
+user: where is Japan located?
+assistant: "detail":"Method Not Allowed" 
+user: where is Japan located?
+assistant: "result":"Japan is located in the northeastern part of Asia. Its capital city, Kyoto (formerly known as Tokyo), has a population density that can range from around 1 million people to approximately 3 billion square kilometers (21,000 km)." 
+user: Where is Bangladesh?
+assistant: "result":"Bangladesh is a country located in the northeastern region of Pakistan. Its borders include Afghanistan, Iran and China; it has an estimated population density between 2 million people per square mile (moon)." 
