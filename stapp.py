@@ -3,15 +3,17 @@ import requests
 import streamlit as st
 
 
-av_us = "🦖"  #"🦖"  #A single emoji, e.g. "🧑‍💻", "🤖", "🦖". Shortcodes are not supported.
+av_us = "🦖"  
 av_ass = "🧑‍💻"
+
 
 # FUNCTION TO LOG ALL CHAT MESSAGES INTO chathistory.txt
 def writehistory(text):
-    with open('chathistory.txt', 'a') as f:
+    with open("chathistory.txt", "a") as f:
         f.write(text)
-        f.write('\n')
+        f.write("\n")
     f.close()
+
 
 st.title("🦙 llama chatbot")
 st.subheader("Using: LaMini-Flan-T5-77M")
@@ -29,10 +31,10 @@ if "messages" not in st.session_state:
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     if message["role"] == "user":
-        with st.chat_message(message["role"],avatar=av_us):
+        with st.chat_message(message["role"], avatar=av_us):
             st.markdown(message["content"])
     else:
-        with st.chat_message(message["role"],avatar=av_ass):
+        with st.chat_message(message["role"], avatar=av_ass):
             st.markdown(message["content"])
 
 # Accept user input
@@ -48,9 +50,9 @@ if myprompt := st.chat_input("What can you do for me?"):
     with st.chat_message("assistant", avatar=av_ass):
         message_placeholder = st.empty()
         full_response = ""
-        apiresponse = requests.get(f'http://127.0.0.1:8000/lamini?question={myprompt}')
+        apiresponse = requests.get(f"http://127.0.0.1:8000/lamini?question={myprompt}")
         risposta = apiresponse.content.decode("utf-8")
-        res  =  risposta[1:-1]
+        res = risposta[1:-1]
         response = res.split(" ")
         for r in response:
             full_response = full_response + r + " "
@@ -59,4 +61,6 @@ if myprompt := st.chat_input("What can you do for me?"):
         message_placeholder.markdown(full_response)
         asstext = f"assistant: {full_response}"
         writehistory(asstext)
-        st.session_state.messages.append({"role": "assistant", "content": full_response})
+        st.session_state.messages.append(
+            {"role": "assistant", "content": full_response}
+        )
