@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- Take input and sende it through an API. Then show the response in HTML -->
+    <script>
+      function submitRequest() {
+        const data = document.getElementById("txtinp").value;
+
+        // usea public available api to test
+        const url = `http://127.0.0.1:8000/lamini?question=${data}`;
+        console.log(data);
+
+        fetch(url, {
+          method: "GET",
+        //   body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            document.getElementById("response").innerHTML = json.result;
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div>
+      <textarea id="txtinp" cols="30" rows="10"></textarea>
+      <button onclick="submitRequest()">Send</button>
+    </div>
+
+    <div>
+      <p id="response"></p>
+    </div>
+  </body>
+</html>

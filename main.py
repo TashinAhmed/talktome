@@ -1,11 +1,16 @@
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 import asyncio
+
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSeq2SeqLM
 from langchain.llms import HuggingFacePipeline
 from langchain import PromptTemplate, LLMChain
 import copy
+
+from fastapi.middleware.cors import CORSMiddleware
+from time import sleep
+import requests
 
 
 app = FastAPI(
@@ -14,7 +19,17 @@ app = FastAPI(
     version="0.0.1",
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "*"
+    ],  # This allows all origins. You can specify specific origins instead.
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
+# TEST FAILED
 # app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # LaMini init
@@ -27,7 +42,7 @@ base_model = AutoModelForSeq2SeqLM.from_pretrained(
     torch_dtype=torch.float32,
 )
 
-# Lanchain pipeline init
+# Langchain pipeline init
 llm = HuggingFacePipeline.from_model_id(
     model_id=checkpoint,
     task="text2text-generation",

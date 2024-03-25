@@ -21,11 +21,16 @@ Built on Macbook M1 Air 2020 MacOS 14.4 primarily
     ├── README.md
     ├── main.py
     ├── stapp.py
+    ├── index.html
     ├── model/
     │   ├── weight_file.bin
     │   └── utilities.extensions
-    └── assets/
-        └── media_attached.extensions
+    ├── assets/
+    │   └── media_attached.extensions
+    └── static/
+        ├── index.html
+        ├── script.js
+        └── style.css
 ```
 
 ## Usage
@@ -33,7 +38,7 @@ Built on Macbook M1 Air 2020 MacOS 14.4 primarily
 
 ## Flow of completition
 
-### 0.1 
+### 0.1 - FastAPI local server test
 load server:
  ```uvicorn main:app --reload```
 
@@ -41,9 +46,21 @@ run primary test:
  ```python test.py```
 
 
-### 0.2 
+### 0.2 - simple streamlit test
 load server:
  ```uvicorn --host 0.0.0.0 main:app```
 
 run streamlit:
  ```python3.10 -m streamlit run stapp.py```
+
+
+### 0.3.1 - trial with custom UI
+load server:
+ ```uvicorn --host 0.0.0.0 main:app```
+
+Open: 
+ ```index.html``` 
+
+
+### 0.3.2 - [FAILED] trial with custom UI
+- .
